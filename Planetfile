@@ -2,14 +2,13 @@
 Planet.configure do |config|
   config.branch = "master"
   config.repository = "git@github.com:ecolehetic/cifacom-insertion.git"
-  config.deploy_to = '~/cifacom-insertion'
-  config.keys = "~/.ssh/cifacom-insertion.pub"
+  config.keys = "~/.ssh/id_rsa"
 end
 
 Planet.target :preprod do |server|
-  server.url = "http://preprod.cifacom.com"
+  server.ssh = "yadomi@localhost:git/cifacom"
 end
 
 Planet.target :production do |server|
-  server.url = 'http://cifacom.com'
+  server.ssh = 'git@github.com:schacon/ruby-git'
 end

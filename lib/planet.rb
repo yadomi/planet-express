@@ -1,4 +1,7 @@
 require 'thor'
+require 'gitable/uri'
+
+require 'planet/ssh'
 require 'planet/version'
 
 module Planet
@@ -11,13 +14,17 @@ module Planet
   end
 
   class Server
-    attr_accessor :url
+    attr_accessor :ssh, :uri
   end
 
   def self.target(s)
     self.servers ||= Hash.new
     self.servers[s] = Server.new
+
     yield servers[s]
+    servers[s].uri = Gitable::URI.parse(servers[s].ssh)
+    servers[s].uri.path = '~/' + servers[s].uri.path unless servers[s].uri.path[0] == '/' 
+
   end
 
   def self.configure
@@ -37,12 +44,14 @@ module Planet
         end
         @@planetfile = File.join(Dir.pwd, PLANET_FILE)
         load @@planetfile
-        puts Planet.servers
       end
 
       desc 'setup NAME', 'Create the remote git repository and install push hooks for it'
-      def setup(name)
-        puts "Hello #{name}"
+      def setup(target)
+        uri = Planet.servers[target.to_sym].uri
+        Net::SSH.start(uri.host, uri.user, :keys => [ Planet.configuration.keys ]) do |ssh|
+          ssh.exec("mkdir -p #{uri.path} && cd #{uri.path} && git init")
+        end
       end
 
     end
