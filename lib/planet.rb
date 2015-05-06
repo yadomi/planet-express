@@ -46,6 +46,11 @@ module Planet
         load @@planetfile
       end
 
+      desc 'init', 'Initialize project with a dummy Planetfile and adds deploy scripts'
+      def init
+        Dir.mkdir 'deploy/'
+      end
+
       desc 'setup NAME', 'Create the remote git repository and install push hooks for it'
       def setup(target)
         uri = Planet.servers[target.to_sym].uri
