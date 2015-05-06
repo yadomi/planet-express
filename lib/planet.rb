@@ -1,7 +1,7 @@
 require 'thor'
 require 'gitable/uri'
+require 'net/ssh'
 
-require 'planet/ssh'
 require 'planet/version'
 
 module Planet
@@ -50,10 +50,15 @@ module Planet
       def setup(target)
         uri = Planet.servers[target.to_sym].uri
         Net::SSH.start(uri.host, uri.user, :keys => [ Planet.configuration.keys ]) do |ssh|
-          ssh.exec("mkdir -p #{uri.path} && cd #{uri.path} && git init")
+          cmd = %{  
+            mkdir -p #{uri.path} && 
+            cd #{uri.path} && 
+            git clone --depth 1 #{Planet.configuration.repository} . 
+          }
+          ssh.exec(cmd)
         end
       end
 
     end
   end
-end
+end 
