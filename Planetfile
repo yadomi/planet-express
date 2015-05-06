@@ -1,0 +1,15 @@
+
+Planet.configure do |config|
+  config.branch = "master"
+  config.repository = "git@github.com:ecolehetic/cifacom-insertion.git"
+  config.deploy_to = '~/cifacom-insertion'
+  config.keys = "~/.ssh/cifacom-insertion.pub"
+end
+
+Planet.target :preprod do |server|
+  server.url = "http://preprod.cifacom.com"
+end
+
+Planet.target :production do |server|
+  server.url = 'http://cifacom.com'
+end
