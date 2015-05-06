@@ -70,7 +70,8 @@ module Planet
         Net::SSH.start(uri.host, uri.user, :keys => [ Planet.configuration.keys ]) do |ssh|
           cmd = %{
             cd #{uri.path} && \
-            git pull origin #{branch} 
+            git pull origin #{branch} && \
+            sh #{uri.path}/deploy/after_deploy.sh
           }
           ssh.exec(cmd)
         end
