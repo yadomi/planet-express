@@ -1,5 +1,10 @@
+![image](https://dl.dropboxusercontent.com/u/6888621/htdocs/planet-express.png)
+
 Planet-Express
 ==============
+
+![image](https://img.shields.io/badge/version-0.1.1-brightgreen.svg)
+
 
 Planet Express is a command line utility written in rubt to deploy code from git repositories.
 
