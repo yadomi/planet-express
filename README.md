@@ -8,6 +8,14 @@ Planet-Express
 
 Planet Express is a command line utility written in rubt to deploy code from git repositories.
 
+** /!\ This project is actualy at a very early developpement stage /!\ **
+
+Requirements
+------------
+
+- Git > 2.x
+- Ruby > 2.x
+
 Installation
 ------------
 
