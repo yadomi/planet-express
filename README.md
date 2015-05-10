@@ -3,7 +3,7 @@
 Planet-Express
 ==============
 
-![image](https://img.shields.io/badge/version-0.1.1-brightgreen.svg)
+![image](https://img.shields.io/badge/version-0.1.2-brightgreen.svg)
 
 
 Planet Express is a command line utility written in **Ruby** to deploy code from git repositories.
