@@ -1,0 +1,37 @@
+
+# ----------------------------------------------------
+# Use configure block to configure your repository,
+# default branch, and deployement behavior.
+# ----------------------------------------------------
+Planet.configure do |config|
+
+  # Specify the default branch to pull from the repository 
+  config.branch = "master"
+
+  # Specity the URL of the Git repository using SCP Style URI
+  config.repository = "git@github.com:git/git.git"
+
+  # Specify the private SSH key used to connect to the repository (eg: GitHub)
+  config.key = '~/.ssh/github_rsa'
+end
+
+
+
+# ----------------------------------------------------
+# Use target-configure block to configure a target.
+# You can add any target as you want 
+# ----------------------------------------------------
+Planet.target :production do |server|
+
+  # Specify the deployement target using SCP Style URI
+  server.ssh = "user@production-server.com:deploy/location"
+
+  # The private SSH key used to connect to the server
+  server.key = '~/.ssh/production_rsa'
+end
+
+
+Planet.target :preprod do |server|
+  server.ssh = "user@preprod-server.com:deploy/location"
+  server.key = '~/.ssh/preprod_rsa'
+end
