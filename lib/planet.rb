@@ -10,11 +10,11 @@ module Planet
   end
 
   class Configuration
-    attr_accessor :branch, :repository, :keys, :deploy_to
+    attr_accessor :branch, :repository, :key
   end
 
   class Server
-    attr_accessor :ssh, :uri
+    attr_accessor :ssh, :uri, :key
   end
 
   def self.target(s)
@@ -81,12 +81,15 @@ module Planet
         end
 
         uri = Planet.servers[target.to_sym].uri
-        Net::SSH.start(uri.host, uri.user, :keys => [ Planet.configuration.keys ]) do |ssh|
-          cmd = %{  
-            mkdir -p #{uri.path} && 
-            cd #{uri.path} && 
-            git clone --depth 1 #{Planet.configuration.repository} . 
-          }
+        Net::SSH.start(uri.host, uri.user, :keys => [Planet.servers[target.to_sym].key] ) do |ssh|
+
+          if Planet.configuration.key 
+            cmd = %{ ssh-agent bash -c '
+              ssh-add #{Planet.configuration.key } &&
+              git clone #{Planet.configuration.repository} #{uri.path}' } 
+          else
+            cmd = %{ git clone --depth 1 #{Planet.configuration.repository} #{uri.path} }
+          end
           ssh.exec(cmd)
         end
       end
@@ -96,7 +99,7 @@ module Planet
       desc 'deploy TARGET [BRANCH]', 'Deploy the application to the specified target'
       def deploy(target, branch='master')
         uri = Planet.servers[target.to_sym].uri
-        Net::SSH.start(uri.host, uri.user, :keys => [ Planet.configuration.keys ]) do |ssh|
+        Net::SSH.start(uri.host, uri.user, :keys => [Planet.servers[target.to_sym].key] ) do |ssh|
           cmd = %{
             cd #{uri.path} && \
             git pull origin #{branch} && \
