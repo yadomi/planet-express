@@ -6,9 +6,9 @@ Planet-Express
 ![image](https://img.shields.io/badge/version-0.1.1-brightgreen.svg)
 
 
-Planet Express is a command line utility written in rubt to deploy code from git repositories.
+Planet Express is a command line utility written in **Ruby** to deploy code from git repositories.
 
-** /!\ This project is actualy at a very early developpement stage /!\ **
+	/!\ This project is actualy at a very early developpement stage /!\
 
 Requirements
 ------------
