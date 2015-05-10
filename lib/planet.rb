@@ -103,7 +103,7 @@ module Planet
           cmd = %{
             cd #{uri.path} && \
             git pull origin #{branch} && \
-            sh #{uri.path}/deploy/after_deploy.sh
+            cd #{uri.path} && sh ./deploy/after_deploy.sh
           }
           ssh.exec(cmd)
         end
