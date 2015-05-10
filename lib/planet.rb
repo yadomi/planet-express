@@ -73,7 +73,7 @@ module Planet
 
 
 
-      desc 'setup NAME', 'Create the remote git repository and install push hooks for it'
+      desc 'setup TARGET', 'Create the git repository on the remote and install hooks on it'
       def setup(target)
 
         unless initialized? then 
