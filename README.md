@@ -5,10 +5,9 @@ Planet-Express
 
 ![image](https://img.shields.io/badge/version-0.1.3-brightgreen.svg)
 
-
 Planet Express is a command line utility written in **Ruby** to deploy code from git repositories.
 
-	/!\ This project is actualy at a very early developpement stage /!\
+**This project is under developpement. Consider this project not production-ready.**
 
 Requirements
 ------------
@@ -33,7 +32,7 @@ Usage
 1. Initialize your projet with a `Planetfile`:
 
     ```
-    planet init
+    $ planet init
     ```
 
     This command created a `Planetfile` at the root of the projet. You may want to edit this file to adapt to your deployment stack.
@@ -41,14 +40,32 @@ Usage
 2. Setup on the remote server:
 
     ```
-    planet setup preprod
+    $ planet setup preprod
     ```
     This command clone the repo on the remote host to the desired location.
 
 3. Deploy !
 	
 	```
-	planet deploy preprod
+	$ planet deploy preprod
 	```
 	
 	This command pull the lastest revision of the specified branch on the remote host and then run hooks in **deploy/**.
+
+Planetfile API
+--------------
+
+###Planet.configure
+
+- `config.branch`: the default branch to pull from the repository (default: master)
+- `config.repository`: the Git SCP-style URI repository URL
+- `config.key`: the private SSH key used to connect to the repository (eg: GitHub)
+
+###Planet.target
+
+- `server.ssh`: the deployement target using SCP Style URI.
+
+	The last part is the path where you want to deploy your project. You can use 	absolute (eg: **/path/to/deploy/location**) or 
+	or relative path. This mean that deploy/location is the same than **/home/	user/deploy/location** or **~/deploy/location**
+
+- `server.key`: The private SSH key used to connect to the server
