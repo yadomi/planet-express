@@ -52,6 +52,19 @@ Usage
 	
 	This command pull the lastest revision of the specified branch on the remote host and then run hooks in **deploy/**.
 
+FAQ
+---
+
+TODO
+----
+
+Statut | Task |
+:-----:|------|
+☑ | Add todos |
+☑ | Write tests |
+☐ | Keep old releases |
+☐ | Auto rollback when deploy fail |
+
 Planetfile API
 --------------
 
