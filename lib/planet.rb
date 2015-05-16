@@ -10,7 +10,7 @@ module Planet
   end
 
   class Configuration
-    attr_accessor :branch, :repository, :key
+    attr_accessor :branch, :repository, :key, :workspace, :release
   end
 
   class Server
@@ -107,6 +107,13 @@ module Planet
           }
           ssh.exec(cmd)
         end
+      end
+
+
+
+      desc 'rollback TARGET', 'Rollback one version backward to the specified target'
+      def rollback(target)
+
       end
 
 
