@@ -3,7 +3,7 @@
 Planet-Express
 ==============
 
-![image](https://img.shields.io/badge/version-0.1.4-brightgreen.svg)
+![image](https://img.shields.io/badge/version-0.1.5-brightgreen.svg)
 
 Planet Express is a command line utility written in **Ruby** to deploy code from git repositories.
 
@@ -21,7 +21,7 @@ Installation
 For now you can clone this repository and build the gem
 
 ```
-git clone git@github.com:yadomi/planet-express.git
+git clone git@github.com:yadomi/planet-express.git && cd planet-express
 bundle install
 rake install
 ```
