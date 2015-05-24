@@ -60,7 +60,7 @@ module Planet
       def init
 
         if initialized? then 
-          abort 'This projet has already bean initialized with a Planetfile'
+          abort 'This projet has already been initialized with a Planetfile'
         end
 
         Dir.mkdir 'deploy/'
