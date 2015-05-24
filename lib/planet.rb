@@ -97,7 +97,7 @@ module Planet
 
 
       desc 'deploy TARGET [BRANCH]', 'Deploy the application to the specified target'
-      def deploy(target, branch='master')
+      def deploy(target, branch = Planet.configuration.branch )
         uri = Planet.servers[target.to_sym].uri
         Net::SSH.start(uri.host, uri.user, :keys => [Planet.servers[target.to_sym].key] ) do |ssh|
           cmd = %{
