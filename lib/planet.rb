@@ -102,6 +102,7 @@ module Planet
         Net::SSH.start(uri.host, uri.user, :keys => [Planet.servers[target.to_sym].key] ) do |ssh|
           cmd = %{
             cd #{uri.path} && \
+            git reset HEAD --hard && \
             git checkout #{branch} && \
             git pull origin #{branch} && \
             cd #{uri.path} && sh ./deploy/after_deploy.sh
