@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
 	spec.authors       = ["Felix Yadomi"]
 	spec.email         = ["felix.yadomi@gmail.com"]
 
-	spec.name          = "planet"
+	spec.name          = "planet-express"
 	spec.version       = Version::VERSION
 	spec.summary       = %q{Ship any code with Planet Express}
 
