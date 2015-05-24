@@ -61,7 +61,7 @@ TODO
 Statut | Task |
 :-----:|------|
 ☑ | Add todos |
-☑ | Write tests |
+☐ | Write tests |
 ☐ | Keep old releases |
 ☐ | Auto rollback when deploy fail |
 
